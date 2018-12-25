@@ -8,22 +8,22 @@ import java.util.regex.Pattern;
 public class Exercises3 {
 
 	public static void main(String[] args) {
-		File[] files = getFile("E://", "txt");
+		File[] list = getFile("E://", "txt");
 
-		Optional.ofNullable(files).map(list -> Arrays.asList(list).stream())
+		Optional.ofNullable(list).map(files -> Arrays.asList(files).stream())
 				.ifPresent(stream -> stream.forEach(System.out::println));
 	}
 
-	private static File[] getFile(String path, final String stuffix) {
+	private static File[] getFile(String srcPath, final String stuffix) {
 
 		return Optional
-				.ofNullable(path)
-				.filter(path1 -> path != null)
+				.ofNullable(srcPath)
+				.filter(path -> path != null)
 				.map(File::new)
 				.filter(file -> file.exists())
 				.filter(file -> file.isDirectory())
-				.map(file1 -> {
-					return file1.listFiles((file, name) -> {
+				.map(file -> {
+					return file.listFiles((file1, name) -> {
 						Pattern p = Pattern.compile(new StringBuilder(".")
 								.append(Optional.ofNullable(stuffix)
 										.orElse("*")).append("$").toString());

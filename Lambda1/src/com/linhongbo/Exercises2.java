@@ -54,18 +54,18 @@ public class Exercises2 {
 				.ifPresent(stream -> stream.forEach(System.out::println));
 	}
 
-	private static File[] getDirectory(String path) {
-		return Optional.ofNullable(path).filter(path1 -> path1 != null)
+	private static File[] getDirectory(String srcPath) {
+		return Optional.ofNullable(srcPath).filter(path -> path != null)
 				.map(File::new).filter(file -> file.exists())
 				.filter(file -> file.isDirectory())
 				.map(file -> file.listFiles(Exercises2::listFiles))
 				.orElse(null);
 	}
 
-	private static boolean listFiles(File file) {
-		return Optional.ofNullable(file).filter(file1 -> file1 != null)
-				.filter(file1 -> file1.exists())
-				.map(file1 -> file1.isDirectory()).orElse(false);
+	private static boolean listFiles(File srcFile) {
+		return Optional.ofNullable(srcFile).filter(file -> file != null)
+				.filter(file -> file.exists())
+				.map(file -> file.isDirectory()).orElse(false);
 	}
 
 }
