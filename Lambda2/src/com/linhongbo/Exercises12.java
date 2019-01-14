@@ -25,9 +25,9 @@ public class Exercises12 {
 
 	private static int sum1(Stream<String> source) {
 		AtomicInteger result = new AtomicInteger();
-		
+
 		source.parallel().filter(item -> {
-			if(item.length() < 12){
+			if (item.length() < 12) {
 				result.getAndIncrement();
 				return true;
 			} else {
